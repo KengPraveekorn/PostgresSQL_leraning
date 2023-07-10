@@ -1,0 +1,57 @@
+-- PostgresSQL DB(mycafe) -- 
+
+-- create category table set primary key --
+create table category (
+	category_id varchar(2) primary key,
+	descr varchar
+);
+
+-- create drinkmenu table set primary key and foreign key --
+create table drinkmenu (
+	id int primary key,
+	descr varchar,
+	category_id varchar(2),
+	price int,
+	foreign key (category_id) references category(category_id)
+);
+
+-- Insert data and foreign category -- 
+insert into category values
+	('cf','coffee'),
+	('te','tea'),
+	('ju','juice')
+
+-- Show data category --	
+select * from category;
+
+-- Insert data drinkmenu -- 
+insert into drinkmenu values
+	(1,'mocha','cf',50),
+	(2,'latte','cf',40),
+	(3,'green tea','te',35);
+
+-- Show data drinkmenu --	
+select * from drinkmenu;
+
+-- Insert data drinkmenu by id not same 1,2,3 just id 4 up -- 
+insert into drinkmenu values
+	(3,'jasmine tea','te',50);
+-- ERROR: duplicate key value violates unique constraint "drinkmenu_pkey" --
+
+insert into drinkmenu values
+	(4,'jasmine tea','te',50);	
+
+-- violates foreign key constraint --
+insert into drinkmenu values
+	(5,'coke','sd',25);
+-- ERROR: insert or update on table "drinkmenu" violates foreign key constraint "drinkmenu_category_id_fkey" --
+
+-- Insert foreign (sd) category -- 
+insert into category values
+	('sd','soda');
+
+insert into drinkmenu values
+	(5,'coke','sd',25);
+
+select * from drinkmenu;
+	

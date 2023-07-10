@@ -1,0 +1,36 @@
+-- PostgresSQL DB(saturn) --
+
+-- Run Query F5 --
+
+-- Create table Serial คือ Auto increate --
+create table freelance(
+    id serial primary key,
+    name varchar(50)
+);
+
+-- Show all datatable --
+select * from freelance;
+
+-- Insert data table -- 
+insert into freelance(name) VALUES
+('Peter'),('Ann'),('Jane');
+
+-- Add column --
+alter table freelance
+    add column gender char(1);
+alter table freelance
+    add column age int,
+    add column email varchar(50);
+
+-- Rename column --
+alter table freelance
+    rename column name to first_name;
+
+-- Change type column --
+alter table freelance
+    alter column age type float;
+
+-- Remove column --
+alter table freelance
+    drop column gender,
+    drop column email;

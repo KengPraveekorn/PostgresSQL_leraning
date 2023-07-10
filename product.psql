@@ -1,0 +1,28 @@
+-- ใส่สูตรคำนวณโดยใช้ GENERATED ALWAYS AS () STORED --
+create table product (
+    id serial,
+    price numeric(8,2), -- ความยาว 8 ทศนิยม 2 ตน.
+    cost numeric(8,2),
+    margin numeric(8,2) GENERATED ALWAYS as ((price-cost)/price) stored
+);
+
+insert into product(price,cost) values (110,100),(50,20);
+
+select * from product
+
+-- การใช้ case end เป็น condition --
+create table product2 (
+    id serial,
+    income int, -- ความยาว 8 ทศนิยม 2 ตน.
+    income_level varchar GENERATED ALWAYS AS (
+        CASE
+            WHEN income > 100000 then 'high'
+            WHEN income > 50000 then 'medium'
+            else 'low'
+        END
+    ) STORED
+);
+
+insert into product2(income) values (200000),(12000),(60000);
+
+select * from product2

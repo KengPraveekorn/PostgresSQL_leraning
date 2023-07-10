@@ -1,0 +1,32 @@
+select * from city;
+
+-- Show data column name, countrycode, population
+select name, countrycode, population
+    from city;
+
+-- Show data ที่ population < 100000
+select name, countrycode, population
+    from city where population < 100000; 
+
+-- Show data ที่ countrycode = NLD
+select name, countrycode, population
+    from city where countrycode = 'NLD'; 
+    
+-- ขึ้นต้นด้วย A at column name
+select name, countrycode, population
+    from city where name like 'A%'; 
+
+-- ขึ้นต้นด้วย Am at column name
+select name, countrycode, population
+    from city where name like 'Am%'; 
+
+-- m อยู่ตรงกลาง หน้าหลังเป็นอะไรก็ได้ at column name
+select name, countrycode, population
+    from city where name like '%m%'; 
+
+-- ilike (insensitive) ตัวใหญ่ตัวเล็กไม่มีความหาย --
+select name, countrycode, population
+    from city where name ilike 'a%'; 
+
+
+

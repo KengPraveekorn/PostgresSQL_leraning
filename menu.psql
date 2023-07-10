@@ -1,0 +1,66 @@
+create table menu (
+    id int primary key,
+    descr varchar,
+    descr_en varchar,
+    category varchar,
+    price int
+);
+
+insert into menu VALUES 
+    (1, 'มอคค่า','mocha','coffee',40),
+    (2, 'ลาเต้','latte','coffee',50);
+
+select * from menu;
+
+insert into menu VALUES
+    (99, 'มอคค่า','mocha','coffee',40);
+
+select * from menu;
+
+DELETE from menu where id=99;
+
+-- unique index คือ ห้ามใส่ข้อมูลซ้ำใน column ที่กำหนด --
+create unique index uidx_menu_descr on menu(descr);
+
+-- ERROR: duplicate key value violates unique constraint "uidx_menu_descr" --
+insert into menu VALUES
+    (99, 'มอคค่า','mocha','coffee',40);
+
+-- none UNIQUE index อนุญาติให้ซ้ำได้
+create index  idx_menu_category on menu(category);
+
+drop table menu;
+
+create table menu (
+    id serial primary key,
+    descr varchar,
+    descr_en varchar,
+    category varchar,
+    price int
+);
+
+insert into menu (descr,descr_en,category,price) VALUES
+    ('มอคค่า','mocha','coffee',40),
+    ('ลาเต้','latte','coffee',50);
+
+select * from menu;
+
+DELETE from menu;
+
+insert into menu (descr,descr_en,category,price) VALUES
+    ('มอคค่า','mocha','coffee',40),
+    ('ลาเต้','latte','coffee',50);
+
+select * from menu;
+
+-- Reset serial (auto increate) --
+TRUNCATE table menu RESTART IDENTITY;
+
+insert into menu (descr,descr_en,category,price) VALUES
+    ('มอคค่า','mocha','coffee',40),
+    ('ลาเต้','latte','coffee',50);
+
+select * from menu;
+
+
+
